@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import styles from './style.module.css'
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom';
 
 const BtnLoggedIn = (props) => {
 
