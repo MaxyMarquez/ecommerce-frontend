@@ -33,10 +33,10 @@ const NavBar = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const queryParams = search ? `?nombre=${encodeURIComponent(search)}&categoriaId=` : '';
+        const queryParams = search ? `?nombre=${encodeURIComponent(search)}` : '';
         const url = `/product_list/${queryParams}`;
-        navigate(url);
         setSearch(search);
+        navigate(url);
     };
 
     useEffect(() => {
