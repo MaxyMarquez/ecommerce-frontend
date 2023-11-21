@@ -59,11 +59,12 @@ const NavBar = () => {
                 console.error("Error al obtener los datos del usuario:", error);
             }
         };
+
         fetchUser();
         dispatch(getFavorites(localStorage.getItem('id')))
         const params = new URLSearchParams(location.search);
         setSearch(params.get('nombre') || search);
-    }, []);
+    }, [dispatch]);
 
     return (
         <>
