@@ -19,6 +19,8 @@ const ProductList = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
+  const params = new URLSearchParams(location.search);
+
   const products = useSelector((state) => state.products);
   const categories = useSelector((state) => state.categories);
 
@@ -96,7 +98,6 @@ const ProductList = () => {
   }
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
     const filtroNombre = params.get('nombre' || '');
     const categoria = params.get('categoria');
     setSearchActive(Boolean(filtroNombre || categoria || selectedCategories.length > 0));
