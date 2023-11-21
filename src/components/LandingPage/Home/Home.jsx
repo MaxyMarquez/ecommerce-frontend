@@ -9,6 +9,7 @@ import Reviews from '../Reviews/Reviews'
 
 
 const Home = () => {
+
     return (
         <>
             <NavBar />
