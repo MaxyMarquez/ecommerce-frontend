@@ -90,7 +90,7 @@ const Login = (props) => {
                     </Link>
                     <div className='d-flex flex-column'>
                         <p>¿Eres nuevo? <a href="/register">Registrarse!</a></p>
-                        <p>Ovidaste tu contraseña? <a href="#">Recuperar Contraseña</a></p>
+                        <p>Ovidaste tu contraseña? <Link href="#">Recuperar Contraseña</Link></p>
                     </div>
                 </Offcanvas.Body>
             </Offcanvas>
