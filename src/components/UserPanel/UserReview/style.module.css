@@ -1,0 +1,52 @@
+.review_container {
+    display: grid;
+    justify-items: center;
+    place-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.review_container h3 {
+    font-size: 2em;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.review_edit_container {
+
+    width: 100%;
+    padding: 10px;
+}
+
+.review {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--secondary);
+    border-radius: 6px;
+    padding: 20px;
+}
+
+.review textarea {
+    width: 100%;
+    height: auto;
+    resize: none;
+    padding: 20px;
+    overflow: hidden;
+    border: none;
+}
+
+.form_container {
+    display: grid;
+    place-content: center;
+}
+
+.form_container textarea {
+    border: 1px solid var(--secondary);
+    background-color: transparent;
+    border-radius: 6px;
+    margin-top: 5px;
+    padding: 10px;
+    resize: none;
+}

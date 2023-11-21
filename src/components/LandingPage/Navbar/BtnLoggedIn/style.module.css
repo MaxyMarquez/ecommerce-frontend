@@ -1,0 +1,15 @@
+.dropdownButton {
+    font-size: 1.5em;
+    border: none;
+    color: var(--secondary);
+    background-color: transparent !important;
+    z-index: 1000 !important;
+}
+
+.dropdownButton:active,
+.dropdownButton:focus,
+.dropdownButton:hover {
+    color: var(--primary);
+    background-color: transparent !important;
+    z-index: 1000;
+}

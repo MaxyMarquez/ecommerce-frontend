@@ -1,0 +1,276 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  font-size: 2em;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+.pagination .active {
+
+  display: flex;
+  align-items: center;
+  color: black;
+  background-color: transparent;
+}
+
+.pagination-icon {
+  display: flex;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.713);
+  margin-top: 5px;
+  background-color: transparent;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  padding: 40px;
+}
+
+.logo-img {
+  width: 100px;
+  /* Ajusta el tamaño del logo según tus preferencias */
+  height: auto;
+  /* Ajusta la altura automáticamente para mantener la relación de aspecto */
+  margin-right: 10px;
+  /* Opcional: agrega un espacio entre el logo y el nombre de la aplicación */
+}
+
+
+.app-name {
+  font-size: 36px;
+  /* Tamaño del nombre de la aplicación */
+  color: #00ADB5;
+  /* Color del texto */
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: 270px auto;
+  background-color: var(--bg-color);
+  width: 100%;
+  /* Ocupa todo el ancho disponible */
+  height: 100%;
+  /* Ocupa todo el alto disponible */
+  overflow: hidden;
+  /* Agrega barra de desplazamiento si el contenido es demasiado largo */
+}
+
+.product-list ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  gap: 20px;
+}
+
+
+.product-item {
+  position: relative;
+  grid-column: 2;
+  width: 260px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  text-decoration: none;
+  transition: all .3s;
+  overflow: hidden;
+  transition: all .3s ease;
+}
+
+.product-item:hover .btn_container {
+  transform: translateY(0);
+}
+
+.product-card {
+  width: 100%;
+  min-height: 200px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  transition: all .2s;
+}
+
+.product-item picture {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.product-item picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-item h3 {
+  font-size: 18px;
+  color: #393E46;
+  /* Texto gris oscuro */
+  margin: 0;
+  background-color: #fff;
+}
+
+.product_category {
+  margin-bottom: 5px;
+  color: var(--primary);
+}
+
+
+.product-info {
+  flex: 1;
+  height: 100%;
+  background-color: #fff;
+  padding: 5px;
+  /* Permite que el contenido de la información ocupe todo el espacio restante */
+}
+
+.product-info h3 {
+  margin-top: 5px;
+  font-size: 1em;
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.product-orders {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 5px 0;
+  background-color: #fff;
+}
+
+.product-price {
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--primary);
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+
+.product-stock {
+  font-size: 1em;
+  color: gray;
+  background-color: #fff;
+
+}
+
+.product-shipping {
+  font-size: .9em;
+  color: green;
+  background-color: #fff;
+
+}
+
+.icon-diamont {
+  font-size: 1em;
+  margin-top: 4px;
+  color: rgb(155, 155, 155);
+  background-color: #fff;
+
+}
+
+.product-description {
+  font-size: .8em;
+  color: #393E46;
+}
+
+.menu_search {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+.accordion-header {
+  margin: 0;
+}
+
+.accordion_body {
+  display: flex;
+  flex-direction: column;
+}
+
+.category_input {
+  margin: 0 10px;
+}
+
+.accordion_price {
+  display: flex;
+}
+
+.accordion_price input {
+  width: 100%;
+  margin: 0 5px;
+  text-align: center;
+}
+
+.btn_container {
+  position: absolute;
+  bottom: 0px;
+  transform: translateY(100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: var(--primary);
+  transition: all .3s;
+}
+
+.btn_fav,
+.btn_cart,
+.btn_detail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+  font-size: 1em;
+  background-color: transparent;
+  transition: all .3s ease;
+  border: none;
+  color: white;
+  text-decoration: none;
+}
+
+.btn_cart {
+  background-color: none;
+  color: white;
+  transition: all .3s;
+}
+
+.btn_cart:hover {
+  background-color: var(--secondary);
+}
+
+.btn_fav {
+  background-color: none;
+  color: white;
+  transition: all .3s;
+}
+
+.btn_fav:hover {
+  background-color: var(--secondary);
+
+}
+
+.btn_detail {
+  background-color: none;
+  color: white;
+  transition: all .3s;
+}
+
+.btn_detail:hover {
+  background-color: var(--secondary);
+
+}
+
+.btn_icons {
+  width: 20px;
+  height: 20px;
+}

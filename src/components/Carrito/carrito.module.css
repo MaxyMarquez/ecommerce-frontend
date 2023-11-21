@@ -1,0 +1,159 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  grid-column-gap: 20px;
+}
+
+.product_item {
+  grid-column: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  border-bottom: 1px solid var(--secondary);
+}
+
+.cart_payment {
+  grid-column: 2;
+  grid-row: 1;
+  place-items: center;
+  border: 1px solid var(--secondary);
+  padding: 20px;
+
+}
+
+.cart_info {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: auto;
+
+  grid-column: 1;
+  grid-row: 1;
+  grid-row-gap: 15px;
+  align-self: self-start;
+  border-radius: 6px;
+  margin: 20px 0;
+}
+
+.product_img {
+  width: 150px;
+  height: 140px;
+}
+
+.product_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.product_name {
+  width: 250px;
+  height: 100%;
+  font-size: 1.3em;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.product_name p {
+  margin: 0;
+}
+
+.product_price {
+  width: 100px;
+  height: 40px;
+  color: var(--primary);
+  font-size: 1.5em;
+  font-weight: 800;
+  margin: 0;
+  text-align: center;
+}
+
+.product_title {
+  text-align: center;
+  color: var(--primary);
+  margin: 0;
+}
+
+.product_input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border: 1px solid var(--secondary);
+}
+
+.input {
+  text-align: center;
+  width: 40px;
+  height: 30px;
+  border: none;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.btn_product,
+.btn_delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+}
+
+.btn_delete {
+  margin-right: 10px;
+}
+
+.btn_icon {
+  width: 24px;
+  height: 24px;
+  color: var(--secondary);
+}
+
+.icon_delete {
+  width: 18px;
+  height: 18px;
+  color: red;
+}
+
+.btn_icon_trash {
+  color: var(--secondary);
+
+}
+
+.cart_total_title {
+  letter-spacing: 2px;
+  font-size: 1.5em;
+  border-bottom: 1px solid var(--secondary);
+
+}
+
+.cart_total {
+  letter-spacing: 2px;
+  font-size: 1.5em;
+  border-bottom: 1px solid var(--secondary);
+
+}
+
+.cart_products {
+  letter-spacing: 2px;
+  font-size: 1.2em;
+  border-bottom: 1px solid var(--secondary);
+
+}
+
+.btn_paypal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid var(--secondary);
+  background-color: transparent;
+  padding: 10px 20px;
+}

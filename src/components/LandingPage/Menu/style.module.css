@@ -1,0 +1,90 @@
+.container {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 257px;
+    margin: 50px 0;
+}
+
+.aside,
+.aside_mujeres {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(42, 42, 42);
+    font-size: 2em;
+    width: 350px;
+    height: 100%;
+    padding: 10px;
+    background-image: url('https://img.freepik.com/foto-gratis/composicion-diferentes-elementos-itinerantes_23-2148884938.jpg?w=740&t=st=1699402070~exp=1699402670~hmac=303f333f702b33cd123e2696c235831a6b9d38985d8014ec866354f90f4a7010');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 1px solid var(--secondary);
+}
+
+.aside_mujeres {
+    background-image: url('https://img.freepik.com/fotos-premium/img-articulo-fondo-blanco-2023-jpg-fondo-blanco-aislado-fondo-pantalla-aislado-textura-foto_873925-331515.jpg?w=740');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.aside h3,
+.aside_mujeres h3 {
+    padding: 10px;
+    background-color: rgba(123, 123, 123, 0.55);
+    font-size: 1.5em;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-rows: repeat(2, 127px);
+    width: 80%;
+    height: 100%;
+
+}
+
+.item_card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--secondary);
+    text-decoration: none;
+    color: var(--primary);
+
+}
+
+.item_card p {
+    margin: 0;
+    font-size: 1.4em;
+}
+
+.item_card img {
+    width: 100%;
+    height: 90%;
+    object-fit: contain;
+}
+
+.item_card:hover {
+    border: 1px solid var(--primary);
+}
+
+.btn_card {
+    color: var(--primary);
+    border: none;
+    background-color: transparent;
+}
+
+@media (max-width: 1199px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
