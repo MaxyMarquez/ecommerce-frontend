@@ -84,7 +84,7 @@ const Login = (props) => {
                         </Button>
 
                     </Form>
-                    <Link className={style.btn_google} to='http://localhost:3002/api/auth/google' type="button">
+                    <Link className={style.btn_google} to='https://backend-dev-jnpc.1.us-1.fl0.io//api/auth/google' type="button">
                         <FcGoogle className={style.google_logo} />
                         Iniciar sesi&#243;n con Google
                     </Link>

@@ -12,7 +12,7 @@ import UserPanel from './components/UserPanel/UserPanel'
 import Carrito from './components/Carrito/Carrito';
 import './App.css'
 
-axios.defaults.baseURL = 'http://localhost:3002/api'
+axios.defaults.baseURL = 'https://backend-dev-jnpc.1.us-1.fl0.io/api'
 
 
 
@@ -23,7 +23,7 @@ function App() {
         <Route exact path='/' element={<Home />} />
         <Route exact path='/CreateProducts' element={<CreateProduct />} />
         <Route path="/product_detail/:id" element={<Details />} />
-        <Route path='/product_list' element={<ProductList />} />
+        <Route exact path='/product_list' element={<ProductList />} />
         <Route path='/about_us' element={<AboutUs />} />
         <Route path='/cart' element={<Carrito />} />
         <Route path='/register' element={<Register />} />
