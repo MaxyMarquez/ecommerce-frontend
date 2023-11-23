@@ -9,7 +9,7 @@ import Login from './Login/Login'
 import BtnLoggedIn from './BtnLoggedIn/BtnLoggedIn'
 import axios from 'axios'
 import Favorites from '../Favorites/Favorites'
-import { getCarrito, getFavorites } from '../../../redux/actions'
+import { getCarrito, getFavorites } from '../../redux/actions'
 
 const NavBar = () => {
     const dispatch = useDispatch();
