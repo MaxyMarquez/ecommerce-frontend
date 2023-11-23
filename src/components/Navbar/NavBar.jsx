@@ -117,7 +117,7 @@ const NavBar = () => {
                             <div className={style.fav_container}>
                                 <Link className={style.nav_icon} to={''} onClick={() => setShowFavorites(!showFavorites)}>
                                     <BsHeart className={style.icon} />
-                                    <span className={style.fav_count}>{favorites?.length}</span>
+                                    {/* <span className={style.fav_count}>{favorites?.length}</span> */}
                                 </Link>
                             </div>
                             <div className={style.fav_container}>
