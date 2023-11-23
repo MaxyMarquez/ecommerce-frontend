@@ -1,4 +1,4 @@
-FROM node:16.18.0
+FROM node:21-alpine3.17
 
 WORKDIR /usr/src/app/frontend
 

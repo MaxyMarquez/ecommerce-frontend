@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactPaginate from 'react-paginate';
@@ -31,6 +31,8 @@ const ProductList = () => {
   const [precioMin, setPrecioMin] = useState('');
   const [sortPrice, setSortPrice] = useState('');
   const [show, setShow] = useState(false);
+  const [datos, setDatos] = useState(false);
+
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -57,6 +59,7 @@ const ProductList = () => {
         userId: localStorage.getItem('id'),
         productId: product.id,
       })
+      setDatos(data);
       if (!data.error) {
         Swal.fire({
           title: data.message,
@@ -76,7 +79,6 @@ const ProductList = () => {
   }
 
   const handleCart = async (product) => {
-    console.log(product);
     const dataCart = {
       id_usuario: localStorage.getItem('id'),
       cantidad: 1,
@@ -116,8 +118,7 @@ const ProductList = () => {
     } else {
       dispatch(getAllProducts(currentPage));
     }
-    dispatch(sortProducts(sortPrice))
-  }, [dispatch, location.search, selectedCategories, precioMax, precioMin, currentPage]);
+  }, [dispatch, location.search, selectedCategories, precioMax, precioMin, currentPage, datos]);
 
   return (
     <>
@@ -159,23 +160,22 @@ const ProductList = () => {
         {(searchActive || (products.data && products.data.length > 0)) && (
           <ul>
             {products.data?.map((product) => (
-              <div key={product.id} className="product-item">
-                <div href={`/product_detail/${product.id}`} className='product-card'>
-                  <picture>
-                    <img src={product.img_productos[0]?.url} alt={product.nombre} />
-                    <div className='btn_container'>
-                      <button type='button' className='btn_cart' onClick={() => handleCart(product)}><BsBagPlus className='btn_icons' /></button>
-                      <button type='button' className='btn_fav' onClick={() => handleAddFav(product)}><BsHeart className='btn_icons' /></button>
-                      <a href={`/product_detail/${product.id}`} type='button' className='btn_detail'><BsPlusLg className='btn_icons' /></a>
-                    </div>
-                  </picture>
-                  <div className="product-info">
-                    <h3>{product.nombre}</h3>
-                    <p className='product_category'>{product.categorium?.nombre}</p>
-                    <h4 className='product-price'>$ {product.precio}</h4>
+              <div key={product.id} className="product-card">
+                <picture>
+                  <img src={product.img_productos[0]?.url} alt={product.nombre} />
+                  <div className='btn_container'>
+                    <button type='button' className='btn_cart' onClick={() => handleCart(product)}><BsBagPlus className='btn_icons' /></button>
+                    <button type='button' className='btn_fav' onClick={() => handleAddFav(product)}><BsHeart className='btn_icons' /></button>
+                    <a href={`/product_detail/${product.id}`} type='button' className='btn_detail'><BsPlusLg className='btn_icons' /></a>
                   </div>
+                </picture>
+                <div className="product-info">
+                  <h3>{product.nombre}</h3>
+                  <p className='product_category'>{product.categorium?.nombre}</p>
+                  <h4 className='product-price'>$ {product.precio}</h4>
                 </div>
               </div>
+
             ))}
           </ul>
         )}

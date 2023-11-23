@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import {React,  useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import { LiaUserEditSolid } from "react-icons/lia";
 import style from './style.module.css'

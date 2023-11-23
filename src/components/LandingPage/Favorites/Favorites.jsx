@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Offcanvas } from 'react-bootstrap'
 import { BsBagPlus, BsTrash3 } from "react-icons/bs";
@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 
 const Favorites = (props) => {
 
-    const [datos, setDatos] = useState()
+    const [datos, setDatos] = useState('');
 
     const dispatch = useDispatch();
     const favorites = useSelector(state => state.favorites);
@@ -58,7 +58,7 @@ const Favorites = (props) => {
 
     useEffect(() => {
         if (localStorage.getItem('id')) dispatch(getFavorites(localStorage.getItem('id')))
-    }, [dispatch, Swal, datos]);
+    }, [dispatch, Swal, datos, props.show]);
 
     return (
         <>

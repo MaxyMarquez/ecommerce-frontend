@@ -11,7 +11,8 @@ import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
 import UserPanel from './components/UserPanel/UserPanel'
 import Carrito from './components/Carrito/Carrito';
 import './App.css'
-axios.defaults.baseURL = 'https://backend-dev-jnpc.1.us-1.fl0.io/api'
+axios.defaults.baseURL = 'http://localhost:3002/api'
+
 
 
 
@@ -19,15 +20,15 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route exact path='/' element={<Home />} />
+        <Route path='/' element={<Home />} />
         <Route exact path='/CreateProducts' element={<CreateProduct />} />
-        <Route path="/product_detail/:id" element={<Details />} />
+        <Route exact path="/product_detail/:id" element={<Details />} />
         <Route exact path='/product_list' element={<ProductList />} />
-        <Route path='/about_us' element={<AboutUs />} />
-        <Route path='/cart' element={<Carrito />} />
-        <Route path='/register' element={<Register />} />
+        <Route exact path='/about_us' element={<AboutUs />} />
+        <Route exact path='/cart' element={<Carrito />} />
+        <Route exact path='/register' element={<Register />} />
         <Route element={<ProtectedRoutes />}>
-          <Route path='settings/user' element={<UserPanel />} />
+          <Route exact path='settings/user' element={<UserPanel />} />
         </Route>
       </Routes >
     </div>

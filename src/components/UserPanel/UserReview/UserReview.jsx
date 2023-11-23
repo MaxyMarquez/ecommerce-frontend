@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import {React,  useEffect, useState } from 'react'
 import { Rating } from 'react-simple-star-rating'
 import style from './style.module.css'
 import axios, { Axios } from 'axios';
