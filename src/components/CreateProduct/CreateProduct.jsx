@@ -7,7 +7,7 @@ import Select from 'react-select';
 import { getAllCategories, createProduct } from '../../redux/actions'; // Corregir el nombre de la función createProduct
 import { useDispatch, connect, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
-import NavBar from './Navbar/NavBar';
+import NavBar from '../Navbar/NavBar';
 
 
 function CreateProduct() {

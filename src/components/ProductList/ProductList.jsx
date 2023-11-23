@@ -2,9 +2,10 @@ import { React, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactPaginate from 'react-paginate';
-import NavBar from '../LandingPage/Navbar/NavBar';
-import Newsletter from '../LandingPage/Newsletter/Newsletter';
-import Footer from '../LandingPage/Footer/Footer';
+import NavBar from '../Navbar/NavBar';
+import Newsletter from '../Newsletter/Newsletter';
+import Footer from '../Footer/Footer';
+import Favorites from '../Favorites/Favorites';
 import { buscarProductos, getAllCategories, getAllProducts, sortProducts } from '../../redux/actions';
 import { Accordion } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
@@ -12,7 +13,6 @@ import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import { BsBag, BsBagPlus, BsPlusLg } from "react-icons/bs";
 import { BsHeart } from 'react-icons/bs';
 import Swal from 'sweetalert2';
-import Favorites from '../LandingPage/Favorites/Favorites';
 import './ProducsList.css';
 
 const ProductList = () => {
