@@ -11,7 +11,7 @@ import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
 import UserPanel from './components/UserPanel/UserPanel'
 import Carrito from './components/Carrito/Carrito';
 import './App.css'
-axios.defaults.baseURL = 'https://backend-dev-jnpc.1.us-1.fl0.io//api'
+axios.defaults.baseURL = 'https://backend-dev-jnpc.1.us-1.fl0.io/api'
 
 
 
