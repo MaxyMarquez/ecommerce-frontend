@@ -6,7 +6,7 @@ import validations from "./validations"
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Navbar from '../LandingPage/Navbar/NavBar'
+import Navbar from '../Navbar/NavBar'
 // Styles
 import styles from './register.module.css'
 import { userRegister } from '../../redux/actions';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import NavBar from '../LandingPage/Navbar/NavBar'
+import NavBar from '../Navbar/NavBar'
 import style from './style.module.css'
 import { Link, Navigate } from 'react-router-dom'
 import { LuUserCog } from "react-icons/lu";

@@ -2,7 +2,7 @@ import { React, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { eliminarDelCarrito, getCarrito, actualizarCarrito } from '../../redux/actions';
 import { BsPlusLg, BsDash, BsTrash3 } from "react-icons/bs";
-import NavBar from '../LandingPage/Navbar/NavBar'
+import NavBar from '../Navbar/NavBar'
 import axios from 'axios';
 import { Link } from 'react-router-dom'; // Importa Link
 import styles from './carrito.module.css';

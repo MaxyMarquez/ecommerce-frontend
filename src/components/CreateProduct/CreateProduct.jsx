@@ -1,4 +1,4 @@
-import {React,  useEffect, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -7,7 +7,7 @@ import Select from 'react-select';
 import { getAllCategories, createProduct } from '../../redux/actions'; // Corregir el nombre de la función createProduct
 import { useDispatch, connect, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
-import NavBar from '../LandingPage/Navbar/NavBar';
+import NavBar from './Navbar/NavBar';
 
 
 function CreateProduct() {
