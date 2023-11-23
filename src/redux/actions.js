@@ -61,7 +61,6 @@ export const getTestimonials = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get('/reviews');
-      console.log(data);
       dispatch({
         type: GET_TESTIMONIALS,
         payload: data

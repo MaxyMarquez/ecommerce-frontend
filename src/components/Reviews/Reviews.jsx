@@ -10,14 +10,11 @@ import style from './style.module.css'
 
 const Reviews = () => {
     const dispatch = useDispatch();
-    const reviews = useSelector(state => state.reviews)
-
+    const reviews = useSelector(state => state?.reviews)
 
     useEffect(() => {
         dispatch(getTestimonials());
-
     }, [dispatch]);
-
 
     return (
         <>
@@ -34,7 +31,7 @@ const Reviews = () => {
                 >
                     {
                         reviews.data?.map(review => (
-                            <SwiperSlide className={style.card}>
+                            <SwiperSlide className={style.card} key={review.id}>
                                 <h4>{review.usuario?.persona?.nombre} {review.usuario?.persona?.apellido}</h4>
                                 <div
                                     style={{
@@ -54,7 +51,6 @@ const Reviews = () => {
                             </SwiperSlide>
                         ))
                     }
-
                 </Swiper>
             </div>
         </>
