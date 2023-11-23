@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import styles from '../Details.module.css';
+import styles from './Details.module.css';
 import NavBar from '../Navbar/NavBar';
 import Footer from '..Footer/Footer';
 import Newsletter from '../Newsletter/Newsletter';
