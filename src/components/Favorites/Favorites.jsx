@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Offcanvas } from 'react-bootstrap'
 import { BsBagPlus, BsTrash3 } from "react-icons/bs";
 import style from './style.module.css'
-import { deleteFavorite, getFavorites } from '../../../redux/actions';
+import { deleteFavorite, getFavorites } from '../../redux/actions';
 import Swal from 'sweetalert2';
 
 const Favorites = (props) => {

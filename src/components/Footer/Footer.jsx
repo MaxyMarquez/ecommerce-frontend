@@ -2,8 +2,8 @@ import React from 'react'
 import { BiLogoFacebook, BiLogoInstagram, BiLogoTiktok, BiLogoYoutube } from 'react-icons/bi'
 import { RiTwitterXFill } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
-import google from '../../../assets/google_play.png'
-import appStore from '../../../assets/app_store.png'
+import google from '../../assets/google_play.png'
+import appStore from '../../assets/app_store.png'
 import style from './style.module.css'
 
 const Footer = () => {
