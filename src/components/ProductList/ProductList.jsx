@@ -7,7 +7,7 @@ import Newsletter from '../LandingPage/Newsletter/Newsletter';
 import Footer from '../LandingPage/Footer/Footer';
 import { buscarProductos, getAllCategories, getAllProducts, sortProducts } from '../../redux/actions';
 import { Accordion } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import { BsBag, BsBagPlus, BsPlusLg } from "react-icons/bs";
 import { BsHeart } from 'react-icons/bs';
@@ -166,7 +166,7 @@ const ProductList = () => {
                   <div className='btn_container'>
                     <button type='button' className='btn_cart' onClick={() => handleCart(product)}><BsBagPlus className='btn_icons' /></button>
                     <button type='button' className='btn_fav' onClick={() => handleAddFav(product)}><BsHeart className='btn_icons' /></button>
-                    <a href={`/product_detail/${product.id}`} type='button' className='btn_detail'><BsPlusLg className='btn_icons' /></a>
+                    <Link to={`/product_detail/${product.id}`} type='button' className='btn_detail'><BsPlusLg className='btn_icons' /></Link>
                   </div>
                 </picture>
                 <div className="product-info">
