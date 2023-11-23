@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import axios from 'axios'
 import { Route, Routes } from "react-router-dom";
 import Home from './components/Home/Home'
@@ -17,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='' element={<Home />} />
         <Route exact path='/CreateProducts' element={<CreateProduct />} />
         <Route exact path="/product_detail/:id" element={<Details />} />
         <Route exact path='/product_list' element={<ProductList />} />

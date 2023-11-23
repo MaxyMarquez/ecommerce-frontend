@@ -12,7 +12,7 @@ const Favorites = (props) => {
     const [datos, setDatos] = useState('');
 
     const dispatch = useDispatch();
-    const favorites = useSelector(state => state.favorites);
+    const favorites = useSelector(state => state?.favorites);
 
     const handleCart = async (cart) => {
         const dataCart = {
