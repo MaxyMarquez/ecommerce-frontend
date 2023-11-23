@@ -64,8 +64,8 @@ const NavBar = () => {
         };
 
         fetchUser();
-        dispatch(getFavorites(localStorage.getItem('id')))
-        dispatch(getCarrito(localStorage.getItem('id')))
+        if (localStorage.getItem('id')) dispatch(getFavorites(localStorage.getItem('id')))
+        if (localStorage.getItem('id')) dispatch(getCarrito(localStorage.getItem('id')))
         const params = new URLSearchParams(location.search);
         setSearch(params.get('nombre') || search);
     }, [dispatch,]);
@@ -88,9 +88,6 @@ const NavBar = () => {
                             <button className={style.btn_search} type='submit'><BsSearch /></button>
                         </form>
                         <div className={style.nav_icons}>
-                            {/* <Link className={style.nav_icon} to={''} onClick={() => setShowFavorites(!showFavorites)}><BsHeart /></Link>
-                            <Link className={style.nav_icon} to={'/cart'}><BsBag /></Link> */}
-
                             {
                                 localStorage.getItem('token')
                                     ? <BtnLoggedIn name={user?.persona?.nombre} />
@@ -117,15 +114,15 @@ const NavBar = () => {
                             <div className={style.fav_container}>
                                 <Link className={style.nav_icon} to={''} onClick={() => setShowFavorites(!showFavorites)}>
                                     <BsHeart className={style.icon} />
-                                    {/* <span className={style.fav_count}>{favorites?.length}</span> */}
+                                    <span className={style.fav_count}>{favorites?.length}</span>
                                 </Link>
                             </div>
                             <div className={style.fav_container}>
                                 <Link className={style.nav_icon} to={'/cart'}>
                                     <BsBag className={style.icon} />
-                                    <span className={style.fav_count}>{carrito[0]?.detalle_carritos.reduce((acc, item) => acc + parseInt(item.cantidad), 0)}</span>
+                                    <span className={style.fav_count}>{carrito[0] ? carrito[0]?.detalle_carritos?.reduce((acc, item) => acc + parseInt(item?.cantidad), 0) : 0}</span>
                                 </Link>
-                                <span className={style.total}>$ {carrito[0]?.total}</span>
+                                <span className={style.total}>{carrito[0] ? `$ ${carrito[0]?.total}` : ''}</span>
                             </div>
                         </div>
                     </div>

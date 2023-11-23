@@ -64,7 +64,7 @@ const Carrito = () => {
   };
 
   useEffect(() => {
-    dispatch(getCarrito(userId, idCarrito));
+    if (userId) dispatch(getCarrito(userId));
   }, [dispatch, updateValue]);
 
   return (
@@ -74,8 +74,7 @@ const Carrito = () => {
         <h2>Carrito de Compras</h2>
         <div className={styles.container}>
           {
-            (carrito[0]?.detalle_carritos?.map(item => (
-              console.log(item),
+            carrito && carrito[0]?.detalle_carritos?.map(item => (
               <div key={item.id} className={styles.product_item}>
                 <picture className={styles.product_img}>
                   <img src={item.producto.img_productos[0].url} alt="" />
@@ -106,7 +105,7 @@ const Carrito = () => {
                 </div>
                 <button className={styles.btn_delete} onClick={() => handleDelete(item)}><BsTrash3 className={styles.icon_delete} /></button>
               </div>
-            )))
+            ))
           }
           <div className={styles.cart_payment}>
             <h4>Detalle</h4>
