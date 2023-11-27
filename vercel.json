@@ -35,7 +35,18 @@
                 },
                 {
                     "key": "Set-Cookie",
-                    "value": "SIDCC=ACA-OxPOTM_UM3WwjC52-qo9gfu1VXp0H11Mm2plinbf7z2bBUlSUyrOxFuz9LZ_oE6yOhiJTQ; SameSite=None; Secure"
+                    "value": "__Secure-1PSIDCC=...; SameSite=None; Secure",
+                    "replace": true
+                },
+                {
+                    "key": "Set-Cookie",
+                    "value": "__Host-GAPS=...; SameSite=None; Secure",
+                    "replace": true
+                },
+                {
+                    "key": "Set-Cookie",
+                    "value": "SIDCC=...; SameSite=None; Secure",
+                    "replace": true
                 }
             ]
         }
