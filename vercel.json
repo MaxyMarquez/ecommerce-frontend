@@ -35,18 +35,15 @@
                 },
                 {
                     "key": "Set-Cookie",
-                    "value": "__Secure-1PSIDCC=...; SameSite=None; Secure",
-                    "replace": true
+                    "value": "__Secure-1PSIDCC=...; SameSite=None; Secure"
                 },
                 {
                     "key": "Set-Cookie",
-                    "value": "__Host-GAPS=...; SameSite=None; Secure",
-                    "replace": true
+                    "value": "__Host-GAPS=...; SameSite=None; Secure"
                 },
                 {
                     "key": "Set-Cookie",
-                    "value": "SIDCC=...; SameSite=None; Secure",
-                    "replace": true
+                    "value": "SIDCC=...; SameSite=None; Secure"
                 }
             ]
         }
