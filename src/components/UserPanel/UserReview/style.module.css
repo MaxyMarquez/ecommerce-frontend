@@ -1,3 +1,13 @@
+.container {
+    display: grid;
+    grid-template-columns: 250px;
+}
+
+.reviews_container {
+    grid-column: 2;
+    padding: 20px;
+}
+
 .review_container {
     display: grid;
     justify-items: center;

@@ -1,8 +1,8 @@
-import { React, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { eliminarDelCarrito, getCarrito, actualizarCarrito } from '../../redux/actions';
 import { BsPlusLg, BsDash, BsTrash3 } from "react-icons/bs";
-import NavBar from '../Navbar/NavBar'
+import NavBar from '../LandingPage/Navbar/NavBar'
 import axios from 'axios';
 import { Link } from 'react-router-dom'; // Importa Link
 import styles from './carrito.module.css';
@@ -26,7 +26,6 @@ const Carrito = () => {
         return;
       }
       const response = await axios.post('/pago/create-order', { id_user: userId, id_carrito: idCarrito });
-      console.log(response);
       window.open(`${response?.data?.links[1].href}`);
     } catch (error) {
       console.error('Error al iniciar el pago:', error);
@@ -93,7 +92,7 @@ const Carrito = () => {
                     <input
                       className={styles.input}
                       type="text"
-                      value={item.cantidad}
+                      value={(item.cantidad)}
                       disabled
                     />
                     <button className={styles.btn_product} onClick={() => handleAddItem(item)}><BsPlusLg className={styles.btn_icon} /></button>
@@ -101,7 +100,7 @@ const Carrito = () => {
                 </div>
                 <div>
                   <p className={styles.product_title}>SubTotal</p>
-                  <p className={styles.product_price}>$ {item.subtotal}</p>
+                  <p className={styles.product_price}>$ {Math.round(item.subtotal * 100) / 100}</p>
                 </div>
                 <button className={styles.btn_delete} onClick={() => handleDelete(item)}><BsTrash3 className={styles.icon_delete} /></button>
               </div>
@@ -120,7 +119,7 @@ const Carrito = () => {
                 Total
               </span>
               <span className={styles.cart_total}>
-                $ {carrito[0]?.total}
+                $ {Math.round(carrito[0]?.total * 100) / 100}
               </span>
             </div>
             <div>

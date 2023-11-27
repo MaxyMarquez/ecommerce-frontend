@@ -1,22 +1,27 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 250px;
+
+}
+
+.user_container {
+    grid-column: 2;
+    display: grid;
     width: 100%;
+    justify-items: center;
     gap: 10px;
+    padding: 50px 10px;
 }
 
 .user,
 .user_data {
     display: grid;
-    align-content: center;
+    place-content: center;
     width: 60%;
-    height: auto;
     border-radius: 6px;
     background-color: white;
-    padding: 20px 50px;
-    box-shadow: 1px 1px 1px 1px rgba(128, 128, 128, 0.407);
+    padding: 0 40px;
+    box-shadow: 0px 0px 5px rgb(128, 128, 128);
 }
 
 .user_name,

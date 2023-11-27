@@ -118,6 +118,7 @@
 }
 
 .product-info h3 {
+  margin: 0 !important;
   margin-top: 5px;
   font-size: 1em;
   color: var(--primary);
@@ -231,7 +232,7 @@
 }
 
 .btn_cart:hover {
-  background-color: var(--secondary);
+  background-color: rgb(47, 116, 246);
 }
 
 .btn_fav {
@@ -241,7 +242,7 @@
 }
 
 .btn_fav:hover {
-  background-color: var(--secondary);
+  background-color: rgb(252, 54, 33);
 
 }
 

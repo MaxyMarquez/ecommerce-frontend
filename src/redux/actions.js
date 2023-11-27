@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { ELIMINAR_DEL_CARRITO, AGREGAR_AL_CARRITO, GET_CARRITO, ACTUALIZAR_CARRITO, GET_ALL_CATEGORIES, GET_ALL_PRODUCTS, GET_TESTIMONIALS, SEARCH_PRODUCTS, SORT_PRICE, GET_FAVORITES } from './action-type';
+import { CREATE_PRODUCT_REVIEW, ADD_ITEM_TO_PRODUCT_REVIEW, UPDATE_PRODUCT_REVIEW, DELETE_PRODUCT_REVIEW, ELIMINAR_DEL_CARRITO, GET_ALL_PRODUCT_REVIEWS, AGREGAR_AL_CARRITO, GET_CARRITO, ACTUALIZAR_CARRITO, GET_ALL_CATEGORIES, GET_ALL_PRODUCTS, GET_TESTIMONIALS, SEARCH_PRODUCTS, SORT_PRICE, GET_FAVORITES } from './action-type';
 
 export const getAllProducts = (page) => {
   return async (dispatch) => {
@@ -161,4 +161,69 @@ export const deleteFavorite = (datos) => async () => {
     console.error(error);
   }
 }
+
+export const getAllProductReviews = () => async (dispatch) => {
+  try {
+    const response = await axios.get('/productReviews');
+    dispatch({
+      type: GET_ALL_PRODUCT_REVIEWS,
+      payload: response.data.data,
+    });
+  } catch (error) {
+    console.error('Error al obtener todas las revisiones de productos:', error);
+  }
+}
+
+const updateProductReview = (data) => async (dispatch) => {
+  try {
+    const response = await axios.post('/productReviews/update', data);
+
+    dispatch({
+      type: UPDATE_PRODUCT_REVIEW,
+      payload: response.data,
+    });
+  } catch (error) {
+    console.error('Error al actualizar la revisión del producto:', error);
+  }
+};
+
+export const deleteProductReview = (data) => async (dispatch) => {
+  try {
+    const response = await axios.post('/productReviews/delete', data);
+
+    dispatch({
+      type: DELETE_PRODUCT_REVIEW,
+      payload: response.data,
+    });
+  } catch (error) {
+    console.error('Error al eliminar la revisión del producto:', error);
+  }
+};
+export const createProductReview = (data) => async (dispatch) => {
+  try {
+    const response = await axios.post('/productReviews', data);
+    // En tu función createProductReview dentro de actions.js
+    console.log('Data:', data); // Agrega este log para verificar los datos antes de enviarlos al servidor
+    dispatch({
+      type: CREATE_PRODUCT_REVIEW,
+      payload: response.data,
+    });
+  } catch (error) {
+    console.error('Error al crear la revisión del producto:', error);
+  }
+};
+
+export const addItemToProductReview = (data) => async (dispatch) => {
+  try {
+    const response = await axios.post('/productReviews/addItem', data);
+
+    dispatch({
+      type: ADD_ITEM_TO_PRODUCT_REVIEW,
+      payload: response.data,
+    });
+  } catch (error) {
+    console.error('Error al agregar un artículo a la revisión del producto:', error);
+  }
+};
+
 

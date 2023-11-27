@@ -1,0 +1,81 @@
+.cards-container {
+    display: flex;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+.cards-container .card-container {
+    position: relative;
+    width: 20%;
+    transition: all .5s ease;
+    overflow: hidden;
+
+}
+
+.cards-container .card-container img {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    object-fit: cover;
+    opacity: .5;
+
+}
+
+.cards-container .card-container:hover {
+    width: 500px;
+    color: black;
+}
+
+.cards-container .card-container:hover img {
+    opacity: 1;
+    filter: contrast(110%);
+}
+
+.card-name {
+    position: absolute;
+    bottom: 18%;
+    width: 100%;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    color: #ffffff;
+    letter-spacing: .1em;
+    transform: rotate(-90deg);
+    transition: all .5s ease-out;
+}
+
+.cards-container .card-container:hover .card-name {
+    transform: rotate(0);
+    text-align: center;
+    font-size: 2em;
+    color: rgb(0, 0, 0);
+}
+
+.card-social {
+    width: 100%;
+}
+
+.cards-container .card-container .card-info .card-social {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    bottom: 20px;
+    width: 100%;
+    transform: translatey(200px);
+    transition: all .3s;
+}
+
+.cards-container .card-container:hover .card-info .card-social {
+    transform: translatey(0);
+}
+
+.card-link svg {
+    fill: rgb(0, 0, 0);
+    transition: all .3s;
+}
+
+.card-link svg:hover {
+    transform: scale(1.2);
+}

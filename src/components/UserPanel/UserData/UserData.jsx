@@ -1,8 +1,10 @@
 import axios from 'axios';
-import {React,  useEffect, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import { LiaUserEditSolid } from "react-icons/lia";
 import style from './style.module.css'
+import UserPanel from '../UserPanel';
+import NavBar from '../../LandingPage/Navbar/NavBar';
 
 const UserData = () => {
     const [userData, setuserData] = useState({
@@ -73,87 +75,91 @@ const UserData = () => {
 
     return (
         <>
+            <NavBar />
             <div className={style.container}>
-                <div className={style.user}>
-                    <h3 className={style.user_name}>{userData.usuario}</h3>
-                    <h3>{userData.correo}</h3>
-                </div>
-                <div className={style.user_data}>
-                    <div className={style.header_title}>
-                        <h3 className={style.user_title}>Datos Personales</h3>
-                        {
-                            acount
-                                ? (
-                                    <div>
-                                        <button className={style.btn_save} onClick={handleSave}>Guardar</button>
-                                        <button className={style.btn_save} onClick={handleCancel}>Cancelar</button>
-                                    </div>
-                                ) : (
-                                    <button className={style.btn_edit} onClick={handleEdit}>
-                                        <LiaUserEditSolid className={style.edit_icon} />
-                                    </button>
-                                )
-                        }
+                <UserPanel />
+                <div className={style.user_container}>
+                    <div className={style.user}>
+                        <h3 className={style.user_name}>{userData.usuario}</h3>
+                        <h3>{userData.correo}</h3>
                     </div>
-                    <div>
-                        <div className={style.input_data}>
-                            <div className={style.data_input}>
-                                <label>Nombre</label>
-                                <div>
+                    <div className={style.user_data}>
+                        <div className={style.header_title}>
+                            <h3 className={style.user_title}>Datos Personales</h3>
+                            {
+                                acount
+                                    ? (
+                                        <div>
+                                            <button className={style.btn_save} onClick={handleSave}>Guardar</button>
+                                            <button className={style.btn_save} onClick={handleCancel}>Cancelar</button>
+                                        </div>
+                                    ) : (
+                                        <button className={style.btn_edit} onClick={handleEdit}>
+                                            <LiaUserEditSolid className={style.edit_icon} />
+                                        </button>
+                                    )
+                            }
+                        </div>
+                        <div>
+                            <div className={style.input_data}>
+                                <div className={style.data_input}>
+                                    <label>Nombre</label>
+                                    <div>
+                                        <input type="text"
+                                            name='nombre'
+                                            className={style.input}
+                                            value={userData.nombre}
+                                            onChange={handleChange}
+                                            disabled={!acount}
+                                        />
+                                    </div>
+                                </div>
+                                <div className={style.data_input}>
+                                    <label>Apellido</label>
                                     <input type="text"
-                                        name='nombre'
+                                        name='apellido'
                                         className={style.input}
-                                        value={userData.nombre}
+                                        value={userData.apellido}
+                                        onChange={handleChange}
+                                        disabled={!acount}
+                                    />
+
+                                </div>
+                            </div>
+                            <div className={style.input_data}>
+                                <div className={style.data_input}>
+                                    <label>Documento</label>
+                                    <input type="text"
+                                        name='dni'
+                                        className={style.input}
+                                        value={userData.dni}
+                                        onChange={handleChange}
+                                        disabled={!acount}
+                                    />
+
+                                </div>
+                                <div className={style.data_input}>
+                                    <label>Teléfono</label>
+                                    <input type="text"
+                                        name='telefono'
+                                        className={style.input}
+                                        value={userData.telefono}
                                         onChange={handleChange}
                                         disabled={!acount}
                                     />
                                 </div>
                             </div>
-                            <div className={style.data_input}>
-                                <label>Apellido</label>
-                                <input type="text"
-                                    name='apellido'
-                                    className={style.input}
-                                    value={userData.apellido}
-                                    onChange={handleChange}
-                                    disabled={!acount}
-                                />
-
-                            </div>
-                        </div>
-                        <div className={style.input_data}>
-                            <div className={style.data_input}>
-                                <label>Documento</label>
-                                <input type="text"
-                                    name='dni'
-                                    className={style.input}
-                                    value={userData.dni}
-                                    onChange={handleChange}
-                                    disabled={!acount}
-                                />
-
-                            </div>
-                            <div className={style.data_input}>
-                                <label>Teléfono</label>
-                                <input type="text"
-                                    name='telefono'
-                                    className={style.input}
-                                    value={userData.telefono}
-                                    onChange={handleChange}
-                                    disabled={!acount}
-                                />
-                            </div>
-                        </div>
-                        <div className={style.input_data}>
-                            <div className={style.data_input}>
-                                <label>Dirección</label>
-                                <input type="text"
-                                    name='direccion'
-                                    className={style.input}
-                                    value={userData.direccion}
-                                    onChange={handleChange}
-                                    disabled={!acount}
-                                />
+                            <div className={style.input_data}>
+                                <div className={style.data_input}>
+                                    <label>Dirección</label>
+                                    <input type="text"
+                                        name='direccion'
+                                        className={style.input}
+                                        value={userData.direccion}
+                                        onChange={handleChange}
+                                        disabled={!acount}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import NavBar from '../Navbar/NavBar'
+import NavBar from '../LandingPage/Navbar/NavBar'
 import style from './style.module.css'
 import { Link, Navigate } from 'react-router-dom'
 import { LuUserCog } from "react-icons/lu";
@@ -15,22 +15,8 @@ import UserReview from './UserReview/UserReview';
 
 const UserPanel = () => {
 
-    const [activeComponent, setActiveComponent] = useState('profile');
-
-    const handleProfile = () => {
-        setActiveComponent('profile');
-    };
-
-    const handleShopping = () => {
-        setActiveComponent('shopping');
-    };
-    const handleReview = () => {
-        setActiveComponent('review');
-    };
-
     return (
         <>
-            <NavBar />
             <div className={style.userPanel_container}>
                 <aside className={style.container}>
                     <nav className={style.nav_container}>
@@ -40,27 +26,24 @@ const UserPanel = () => {
                         </div>
                         <div className={style.nav_section}>
                             <label className={style.icon_container}><BsPersonGear className={style.link_icon} /></label>
-                            <Link to={''} className={style.nav_link} onClick={handleProfile}> Mi Perfil <IoIosArrowForward className={style.icon_arrow} /></Link>
+                            <Link to="/settings/user/profile" className={style.nav_link} >
+                                Mi Perfil <IoIosArrowForward className={style.icon_arrow} />
+                            </Link>
                         </div>
                         <div className={style.nav_section}>
                             <label className={style.icon_container}><BsBagCheck className={style.link_icon} /></label>
-                            <Link to={''} className={style.nav_link} onClick={handleShopping}> Mis Compras <IoIosArrowForward className={style.icon_arrow} /></Link>
+                            <Link to="/settings/user/shopping" className={style.nav_link} >
+                                Mis Compras <IoIosArrowForward className={style.icon_arrow} />
+                            </Link>
                         </div>
                         <div className={style.nav_section}>
                             <label className={style.icon_container}><FaRegStar className={style.link_icon} /></label>
-                            <Link to={''} className={style.nav_link} onClick={handleReview}> Review <IoIosArrowForward className={style.icon_arrow} /></Link>
+                            <Link to="/settings/user/review" className={style.nav_link}>
+                                Review <IoIosArrowForward className={style.icon_arrow} />
+                            </Link>
                         </div>
-                        {/* <div className={style.nav_section}>
-                            <label className={style.icon_container}><LuUserCog className={style.link_icon} /></label>
-                            <Link to={''} className={style.nav_link}> Mi Perfil <IoIosArrowForward className={style.icon_arrow} /></Link>
-                        </div> */}
                     </nav>
                 </aside>
-                <div className={style.panel_container}>
-                    {activeComponent === 'profile' && <UserData />}
-                    {activeComponent === 'shopping' && <UserShopping />}
-                    {activeComponent === 'review' && <UserReview />}
-                </div>
             </div>
         </>
     )

@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 190px;
+    background-color: #EFF2F4;
+}
+
+.h3 {
+    font-size: 1.3em;
+}
+
+.p {
+    color: #606060;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input {
+    padding: 5px;
+    width: 300px;
+}
+
+.input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.btn_submit {
+    margin-left: 5px;
+    color: white;
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary);
+}

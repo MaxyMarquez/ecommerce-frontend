@@ -1,5 +1,5 @@
-
-import { ELIMINAR_DEL_CARRITO, AGREGAR_AL_CARRITO, GET_ALL_CATEGORIES, GET_ALL_PRODUCTS, GET_TESTIMONIALS, SEARCH_PRODUCTS, SORT_PRICE, GET_CARRITO, ACTUALIZAR_CARRITO, GET_FAVORITES } from "./action-type";
+// reducer.js
+import { CREATE_PRODUCT_REVIEW, ADD_ITEM_TO_PRODUCT_REVIEW, UPDATE_PRODUCT_REVIEW, DELETE_PRODUCT_REVIEW, GET_ALL_PRODUCT_REVIEWS, AGREGAR_AL_CARRITO, GET_ALL_CATEGORIES, GET_ALL_PRODUCTS, GET_TESTIMONIALS, SEARCH_PRODUCTS, SORT_PRICE, GET_CARRITO, ACTUALIZAR_CARRITO, GET_FAVORITES } from "./action-type";
 
 const initialState = {
     products: [],
@@ -8,6 +8,7 @@ const initialState = {
     reviews: [],
     user: {},
     carrito: [],
+    productReviews: [],
     favorites: [],
 }
 
@@ -28,6 +29,11 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 products: action.payload,
             };
+        case GET_FAVORITES:
+            return {
+                ...state,
+                favorites: action.payload
+            }
         case GET_TESTIMONIALS:
             return {
                 ...state,
@@ -50,6 +56,7 @@ const rootReducer = (state = initialState, action) => {
                 default:
                     return { ...state, };
             }
+
             return {
                 ...state,
                 products: sortedProducts,
@@ -69,18 +76,18 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 carrito: action.payload,
             };
-        case ELIMINAR_DEL_CARRITO:
+        case GET_ALL_PRODUCT_REVIEWS:
             return {
                 ...state,
-                carrito: action.payload.data,
-                productId: action.payload.id_producto,
+                productReviews: action.payload,
             };
-
-        case GET_FAVORITES:
+        case CREATE_PRODUCT_REVIEW:
+        case ADD_ITEM_TO_PRODUCT_REVIEW:
+        case UPDATE_PRODUCT_REVIEW:
+        case DELETE_PRODUCT_REVIEW:
             return {
                 ...state,
-                favorites: action.payload
-            }
+            };
         default:
             return state;
     }

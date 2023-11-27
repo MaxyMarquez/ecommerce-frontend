@@ -1,8 +1,10 @@
-import {React,  useEffect, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import { Rating } from 'react-simple-star-rating'
 import style from './style.module.css'
 import axios, { Axios } from 'axios';
 import Swal from 'sweetalert2';
+import NavBar from '../../LandingPage/Navbar/NavBar';
+import UserPanel from '../UserPanel';
 
 const UserReview = () => {
     const [rating, setRating] = useState(1);
@@ -47,52 +49,58 @@ const UserReview = () => {
 
     return (
         <>
-            {
-                review
-                    ? <div className={style.review_edit_container}>
-                        <div className={style.review}>
-                            <div
-                                style={{
-                                    direction: 'ltr',
-                                    fontFamily: 'sans-serif',
-                                    touchAction: 'none',
-                                    width: 'auto',
-                                    display: 'inline'
-                                }}
-                            >
-                                <Rating
-                                    allowFraction
-                                    initialValue={review.puntuacion}
-                                    onClick={handleRating}
-                                    readonly={true}
-                                />
+            <NavBar />
+            <div className={style.container}>
+                <UserPanel />
+                <div className={style.reviews_container}>
+                    {
+                        review
+                            ? <div className={style.review_edit_container}>
+                                <div className={style.review}>
+                                    <div
+                                        style={{
+                                            direction: 'ltr',
+                                            fontFamily: 'sans-serif',
+                                            touchAction: 'none',
+                                            width: 'auto',
+                                            display: 'inline'
+                                        }}
+                                    >
+                                        <Rating
+                                            allowFraction
+                                            initialValue={review.puntuacion}
+                                            onClick={handleRating}
+                                            readonly={true}
+                                        />
+                                    </div>
+                                    <textarea value={review.contenido} disabled={true} />
+                                </div>
                             </div>
-                            <textarea value={review.contenido} disabled={true} />
-                        </div>
-                    </div>
-                    : <div className={style.review_container}>
-                        <h3>Danos tu opinion</h3>
-                        <div
-                            style={{
-                                direction: 'ltr',
-                                fontFamily: 'sans-serif',
-                                touchAction: 'none',
-                                textAlign: 'center',
+                            : <div className={style.review_container}>
+                                <h3>Danos tu opinion</h3>
+                                <div
+                                    style={{
+                                        direction: 'ltr',
+                                        fontFamily: 'sans-serif',
+                                        touchAction: 'none',
+                                        textAlign: 'center',
 
-                            }}
-                        >
-                            <Rating
-                                allowFraction
-                                initialValue={0.5}
-                                onClick={handleRating}
-                            />
-                        </div>
-                        <form className={style.form_container} onSubmit={handleSubmit}>
-                            <textarea name="" id="" cols="45" rows="8" onChange={(event) => setMessage(event.target.value)}></textarea>
-                            <button type='submit' >Crear</button>
-                        </form>
-                    </div >
-            }
+                                    }}
+                                >
+                                    <Rating
+                                        allowFraction
+                                        initialValue={0.5}
+                                        onClick={handleRating}
+                                    />
+                                </div>
+                                <form className={style.form_container} onSubmit={handleSubmit}>
+                                    <textarea name="" id="" cols="45" rows="8" onChange={(event) => setMessage(event.target.value)}></textarea>
+                                    <button type='submit' >Crear</button>
+                                </form>
+                            </div >
+                    }
+                </div>
+            </div>
         </>
     )
 }
