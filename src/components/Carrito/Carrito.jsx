@@ -7,6 +7,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom'; // Importa Link
 import styles from './carrito.module.css';
 import { FaPaypal } from "react-icons/fa";
+import Swal from 'sweetalert2';
 
 const Carrito = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,6 @@ const Carrito = () => {
   const idCarrito = parseInt(localStorage.getItem('id_carrito'));
 
   const carrito = useSelector(state => state.carrito);
-
   const [updateValue, setUpdateValue] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -25,14 +25,30 @@ const Carrito = () => {
         console.error('ID de usuario o ID de carrito no encontrados. Usuario no autenticado o carrito no válido.');
         return;
       }
+      const cart = await axios.get(`carrito/${userId}`);
+
+      const cartStock = cart?.data?.data[0]?.detalle_carritos?.filter(cart => parseInt(cart.producto.stock) < 1)
+
+      if (cartStock.length !== 0) {
+        Swal.fire({
+          title: `El/los producto "${cartStock[0]?.producto?.nombre}" no posee Stock disponiible`,
+          text: 'Por favor elimine este producto para poder dealizar la compra',
+          icon: 'error'
+        })
+        return;
+      }
+
+
+
       const response = await axios.post('/pago/create-order', { id_user: userId, id_carrito: idCarrito });
-      window.open(`${response?.data?.links[1].href}`);
+      window.location.href = response?.data?.links[1].href;
     } catch (error) {
       console.error('Error al iniciar el pago:', error);
     }
   };
 
   const handleItemAction = async (action, product) => {
+
     const dataCart = {
       id_usuario: localStorage.getItem('id'),
       cantidad: 1,
@@ -51,7 +67,15 @@ const Carrito = () => {
   };
 
   const handleAddItem = async (product) => {
-    handleItemAction('addItem', product);
+    if (parseInt(product.producto.stock) > 0 && parseInt(product.cantidad) < parseInt(product.producto.stock)) {
+      handleItemAction('addItem', product);
+    } else {
+      Swal.fire({
+        title: 'No hay suficiente stock disponible para agregar más unidades.',
+        text: 'Por favor, ajusta la cantidad o elimina el producto del carrito.',
+        icon: 'error'
+      });
+    }
   };
 
   const handleRemoveItem = async (product) => {
@@ -64,7 +88,7 @@ const Carrito = () => {
 
   useEffect(() => {
     if (userId) dispatch(getCarrito(userId));
-  }, [dispatch, updateValue]);
+  }, [dispatch, updateValue, Swal]);
 
   return (
     <>
@@ -82,6 +106,10 @@ const Carrito = () => {
                   <p>{item.producto?.nombre}</p>
                 </div>
                 <div>
+                  <p className={styles.product_title}>Stock</p>
+                  <p className={styles.product_price}>{item.producto.stock > 0 ? item.producto.stock : 'Agotado'}</p>
+                </div>
+                <div>
                   <p className={styles.product_title}>Valor</p>
                   <p className={styles.product_price}>$ {item.producto.precio}</p>
                 </div>
@@ -95,7 +123,13 @@ const Carrito = () => {
                       value={(item.cantidad)}
                       disabled
                     />
-                    <button className={styles.btn_product} onClick={() => handleAddItem(item)}><BsPlusLg className={styles.btn_icon} /></button>
+                    <button
+                      className={styles.btn_product}
+                      onClick={() => handleAddItem(item)}
+                      disabled={parseInt(item.cantidad) > parseInt(item.producto.stock)}
+                    >
+                      <BsPlusLg className={styles.btn_icon} />
+                    </button>
                   </div>
                 </div>
                 <div>
@@ -113,7 +147,7 @@ const Carrito = () => {
                 Cant. de productos
               </span>
               <span className={styles.cart_products}>
-                {carrito[0]?.detalle_carritos.reduce((acc, item) => acc + parseInt(item.cantidad), 0)}
+                {carrito[0]?.detalle_carritos?.reduce((acc, item) => acc + parseInt(item.cantidad), 0)}
               </span>
               <span className={styles.cart_total_title}>
                 Total

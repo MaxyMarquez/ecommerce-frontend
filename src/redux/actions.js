@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { CREATE_PRODUCT_REVIEW, ADD_ITEM_TO_PRODUCT_REVIEW, UPDATE_PRODUCT_REVIEW, DELETE_PRODUCT_REVIEW, ELIMINAR_DEL_CARRITO, GET_ALL_PRODUCT_REVIEWS, AGREGAR_AL_CARRITO, GET_CARRITO, ACTUALIZAR_CARRITO, GET_ALL_CATEGORIES, GET_ALL_PRODUCTS, GET_TESTIMONIALS, SEARCH_PRODUCTS, SORT_PRICE, GET_FAVORITES } from './action-type';
+import { CREATE_PRODUCT_REVIEW, ADD_ITEM_TO_PRODUCT_REVIEW, UPDATE_PRODUCT_REVIEW, DELETE_PRODUCT_REVIEW, ELIMINAR_DEL_CARRITO, GET_ALL_PRODUCT_REVIEWS, AGREGAR_AL_CARRITO, AGREGAR_TODOS_AL_CARRITO, GET_CARRITO, ACTUALIZAR_CARRITO, GET_ALL_CATEGORIES, GET_ALL_PRODUCTS, GET_TESTIMONIALS, SEARCH_PRODUCTS, SORT_PRICE, GET_FAVORITES } from './action-type';
 
 export const getAllProducts = (page) => {
   return async (dispatch) => {
@@ -16,7 +16,6 @@ export const getAllProducts = (page) => {
     }
   };
 };
-
 
 export const createProduct = (formData) => async () => {
   console.log('REDUX', formData);
@@ -61,6 +60,7 @@ export const getTestimonials = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get('/reviews');
+      console.log(data);
       dispatch({
         type: GET_TESTIMONIALS,
         payload: data
@@ -88,7 +88,6 @@ export const userRegister = (formData) => async () => {
     console.error(error);
   }
 };
-
 export const getCarrito = (userId) => {
   return async (dispatch) => {
     try {
@@ -117,6 +116,7 @@ export const actualizarCarrito = (userId, carritoActualizado) => {
     }
   };
 };
+
 export const agregarAlCarrito = (userId, productId, cantidad, idCarrito, subtotal) => async (dispatch) => {
   try {
     const response = await axios.post('/carrito/addItem', { id_usuario: userId, id_producto: productId, cantidad, id_carrito: idCarrito, subtotal, });
@@ -126,6 +126,31 @@ export const agregarAlCarrito = (userId, productId, cantidad, idCarrito, subtota
     });
   } catch (error) {
     console.error('Error al agregar al carrito:', error);
+  }
+};
+
+export const agregarTodosAlCarrito = (userId, productos) => async (dispatch) => {
+  try {
+    const promises = productos.map(async (producto) => {
+      const { id_producto, cantidad, id_carrito, subtotal } = producto;
+      const response = await axios.post('/carrito/addItem', {
+        id_usuario: userId,
+        id_producto,
+        cantidad,
+        id_carrito,
+        subtotal,
+      });
+      return response.data.data;
+    });
+
+    const resultados = await Promise.all(promises);
+
+    dispatch({
+      type: AGREGAR_TODOS_AL_CARRITO,
+      payload: resultados, // Puedes ajustar este payload según tus necesidades
+    });
+  } catch (error) {
+    console.error('Error al agregar todos al carrito:', error);
   }
 };
 
@@ -159,12 +184,16 @@ export const deleteFavorite = (datos) => async () => {
     const { data } = await axios.post('/favoritos/delete', datos);
   } catch (error) {
     console.error(error);
-  }
+  } 6
 }
-
 export const getAllProductReviews = () => async (dispatch) => {
   try {
-    const response = await axios.get('/productReviews');
+    const response = await axios.get('/productReviews', {
+      params: {
+        timestamp: new Date().getTime(), // Agrega un parámetro de consulta único
+      },
+    });
+    console.log('Product Reviews Response:', response.data.data);
     dispatch({
       type: GET_ALL_PRODUCT_REVIEWS,
       payload: response.data.data,
@@ -173,6 +202,7 @@ export const getAllProductReviews = () => async (dispatch) => {
     console.error('Error al obtener todas las revisiones de productos:', error);
   }
 }
+
 
 const updateProductReview = (data) => async (dispatch) => {
   try {
@@ -202,8 +232,7 @@ export const deleteProductReview = (data) => async (dispatch) => {
 export const createProductReview = (data) => async (dispatch) => {
   try {
     const response = await axios.post('/productReviews', data);
-    // En tu función createProductReview dentro de actions.js
-    console.log('Data:', data); // Agrega este log para verificar los datos antes de enviarlos al servidor
+    console.log(data)
     dispatch({
       type: CREATE_PRODUCT_REVIEW,
       payload: response.data,

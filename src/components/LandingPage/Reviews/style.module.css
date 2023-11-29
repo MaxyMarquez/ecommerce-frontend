@@ -5,7 +5,10 @@
     justify-content: center;
     text-align: center;
     gap: 10px;
-    height: auto;
+
+    min-height: 300px;
+    overflow: hidden;
+
     padding: 20px;
     margin: 20px 0;
     border: 1px solid var(--secondary);

@@ -10,6 +10,7 @@ import BtnLoggedIn from './BtnLoggedIn/BtnLoggedIn'
 import axios from 'axios'
 import Favorites from '../Favorites/Favorites'
 import { getCarrito, getFavorites } from '../../../redux/actions'
+import { useCookies } from 'react-cookie';
 import logo from '../../../assets/logo.png'
 
 const NavBar = (props) => {
@@ -24,6 +25,7 @@ const NavBar = (props) => {
     const [open, setOpen] = useState(false);
     const [search, setSearch] = useState('');
     const [user, setUser] = useState(null);
+    const [cookies, setCookie] = useCookies(['']);
 
     const toggleLogin = () => {
         setShow(!show);
@@ -42,8 +44,8 @@ const NavBar = (props) => {
     };
 
     useEffect(() => {
-        const token = Cookies.get('token');
-        const userData = Cookies.get('user')
+        // const token = Cookies.get('token');
+        // const userData = Cookies.get('user')
 
         const fetchUser = async () => {
             try {
@@ -55,19 +57,22 @@ const NavBar = (props) => {
             }
         };
         fetchUser();
-        if (userData) {
-            const parsedUser = JSON.parse(userData);
-            console.log(parsedUser);
-            localStorage.setItem('token', token);
-            localStorage.setItem('id', parsedUser.id);
-        }
+        // if (userData) {
+        //     // const parsedUser = JSON.parse(userData);
+        //     // localStorage.setItem('token', token);
+        //     // localStorage.setItem('id', parsedUser.id);
+        // }
 
         if (localStorage.getItem('id')) dispatch(getFavorites(localStorage.getItem('id')))
         if (localStorage.getItem('id')) dispatch(getCarrito(localStorage.getItem('id')))
 
         const params = new URLSearchParams(location.search);
         setSearch(params.get('nombre') || search);
+
+        setCookie('token')
+        setCookie('user')
     }, [dispatch, props.datos]);
+
 
     return (
         <>
@@ -105,8 +110,8 @@ const NavBar = (props) => {
                     </div>
                     <div className={`${style.nav_links_container} ${open ? style.open : style.close}`}>
                         <div className={style.nav_links}>
-                            <Link className={style.nav_link} to={'/'}>Home</Link>
-                            <Link className={style.nav_link} to={'/product_list'}>Shop</Link>
+                            <Link className={style.nav_link} to={'/'}>Inicio</Link>
+                            <Link className={style.nav_link} to={'/product_list'}>Tienda</Link>
                             <Link className={style.nav_link} to={'/about_us'}>Sobre Nosotros</Link>
                             <Link className={style.nav_link} to={''}>Contacto</Link>
                         </div>
@@ -120,7 +125,7 @@ const NavBar = (props) => {
                             <div className={style.fav_container}>
                                 <Link className={style.nav_icon} to={'/cart'}>
                                     <BsBag className={style.icon} />
-                                    <span className={style.fav_count}>{carrito[0] ? carrito[0]?.detalle_carritos.reduce((acc, item) => acc + parseInt(item.cantidad), 0) : 0}</span>
+                                    <span className={style.fav_count}>{carrito[0] ? carrito[0]?.detalle_carritos?.reduce((acc, item) => acc + parseInt(item.cantidad), 0) : 0}</span>
                                 </Link>
                                 <span className={style.total}> {carrito[0]?.detalle_carritos?.length > 0 ? `$ ${carrito[0]?.total}` : ''}</span>
                             </div>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Offcanvas } from 'react-bootstrap'
 import { BsBagPlus, BsTrash3 } from "react-icons/bs";
 import style from './style.module.css'
-import { deleteFavorite, getFavorites } from '../../../redux/actions';
+import { deleteFavorite, getFavorites, agregarTodosAlCarrito } from '../../../redux/actions';
 import Swal from 'sweetalert2';
 
 const Favorites = (props) => {
@@ -56,6 +56,55 @@ const Favorites = (props) => {
         }
     }
 
+
+    // Funcion de agregar todos los elementos de favoritos al carrito de compras: 
+    const handleAddAllToCart = async () => {
+        try {
+
+            for (const item of favorites) {
+                const dataCart = {
+                    id_usuario: item.id_usuario,
+                    cantidad: 1,
+                    subtotal: item.producto.precio,
+                    id_carrito: localStorage.getItem('id_carrito'),
+                    id_producto: item.id_producto,
+                }
+                try {
+                    const { data } = await axios.post('/carrito/addItem', dataCart);
+                    if (!data.error) {
+                        handleDelete(item.id_producto)
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+            Swal.fire({
+                title: 'Todos los productos se han agregado al carrito',
+                icon: 'success'
+            });
+        } catch (error) {
+            Swal.fire({
+                title: 'Ocurrio un error',
+                icon: 'error'
+            });
+            console.error(error);
+        }
+        // dispatch(agregarTodosAlCarrito(userId, favorites))
+        //     .then(() => {
+        //         Swal.fire({
+        //             title: 'Todos los productos se han agregado al carrito',
+        //             icon: 'success'
+        //         });
+        //     })
+        //     .catch((error) => {
+        //         Swal.fire({
+        //             title: 'Error al agregar productos al carrito',
+        //             text: 'Hubo un problema al agregar los productos al carrito',
+        //             icon: 'error'
+        //         });
+        //     });
+    };
+
     useEffect(() => {
         if (localStorage.getItem('id')) dispatch(getFavorites(localStorage.getItem('id')))
     }, [dispatch, Swal, datos, props.show]);
@@ -85,6 +134,7 @@ const Favorites = (props) => {
                             </div>
                         ))
                     }
+                    <button className={style.btn_addAlltoCart} onClick={handleAddAllToCart}>Agregar todos al carrito</button>
                 </Offcanvas.Body>
             </Offcanvas>
         </>

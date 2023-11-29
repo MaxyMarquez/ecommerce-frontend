@@ -1,5 +1,5 @@
 // reducer.js
-import { CREATE_PRODUCT_REVIEW, ADD_ITEM_TO_PRODUCT_REVIEW, UPDATE_PRODUCT_REVIEW, DELETE_PRODUCT_REVIEW, GET_ALL_PRODUCT_REVIEWS, AGREGAR_AL_CARRITO, GET_ALL_CATEGORIES, GET_ALL_PRODUCTS, GET_TESTIMONIALS, SEARCH_PRODUCTS, SORT_PRICE, GET_CARRITO, ACTUALIZAR_CARRITO, GET_FAVORITES } from "./action-type";
+import { CREATE_PRODUCT_REVIEW, ADD_ITEM_TO_PRODUCT_REVIEW, UPDATE_PRODUCT_REVIEW, DELETE_PRODUCT_REVIEW, GET_ALL_PRODUCT_REVIEWS, AGREGAR_AL_CARRITO, AGREGAR_TODOS_AL_CARRITO, GET_ALL_CATEGORIES, GET_ALL_PRODUCTS, GET_TESTIMONIALS, SEARCH_PRODUCTS, SORT_PRICE, GET_CARRITO, ACTUALIZAR_CARRITO, GET_FAVORITES } from "./action-type";
 
 const initialState = {
     products: [],
@@ -66,6 +66,12 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 carrito: action.payload,
             };
+        case AGREGAR_TODOS_AL_CARRITO:
+            return {
+                ...state,
+                carrito: action.payload,
+            }
+
         case GET_CARRITO:
             return {
                 ...state,

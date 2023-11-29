@@ -12,11 +12,16 @@ import { useDispatch } from 'react-redux';
 import ProductReviewsAndForm from '../LandingPage/Reviews/ProductReviews'; // Agrega esta línea
 import { Rating } from 'react-simple-star-rating';
 import Swal from 'sweetalert2';
+import Favorites from '../LandingPage/Favorites/Favorites';
 
 export default function Details() {
   const { id } = useParams();
   const dispatch = useDispatch();
-
+  const [showFavorites, setShowFavorites] = useState(false);
+  const toggleFavorites = () => {
+    setShowFavorites(!showFavorites);
+  };
+  
   const userId = localStorage.getItem('id');
   const idCarrito = localStorage.getItem('id_carrito'); // Asegúrate de tener esto disponible
 
@@ -79,7 +84,32 @@ export default function Details() {
       console.error(error);
     }
   }
-
+  const handleAddToFavorites = async () => {
+    try {
+      const { data } = await axios.post('/favoritos', {
+        userId: localStorage.getItem('id'),
+        productId: id, // Utiliza el ID del producto actual
+      });
+  
+      if (data.error) {
+        setDatos(!datos);
+        Swal.fire({
+          title: data.message,
+          icon: 'warning',
+        });
+      } else {
+        Swal.fire({
+          title: data.message,
+          icon: 'success',
+        }).then(() => {
+          setShowFavorites(!showFavorites);
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
   return (
     <>
       <NavBar datos={datos} />
@@ -131,11 +161,12 @@ export default function Details() {
                 <p className={styles.pProductoInfo}>{product.descripcion}</p>
               </div>
             </div>
-            <div className={styles.divPanelDeCompra}>
-              <div className={styles.divBotoneraCompra}>
-                <button className={styles.botonCarrito} onClick={() => handleCart(product)}><BsBagPlus /> Añadir al Carrito</button>
-                <button className={styles.botonFavorito}> <BsHeart />Añadir a Favoritos</button>
-              </div>
+
+          </div>
+          <div className={styles.divPanelDeCompra}>
+            <div className={styles.divBotoneraCompra}>
+              <button className={styles.botonCarrito} onClick={() => handleCart(product)}><BsBagPlus /> Añadir al Carrito</button>
+              <button className={styles.botonFavorito} onClick={handleAddToFavorites}><BsHeart /> Añadir a Favoritos</button>
             </div>
           </div>
         </div >
@@ -163,6 +194,7 @@ export default function Details() {
           ))
         }
       </div>
+      <Favorites show={showFavorites} toggleFavorites={toggleFavorites} />
       <Newsletter />
       <Footer />
     </>

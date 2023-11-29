@@ -71,18 +71,23 @@
   position: relative;
   width: 260px;
   height: 300px;
-  border-radius: 6px;
   display: flex;
   flex-direction: column;
   text-decoration: none;
   transition: all .2s ease;
+  border: 1px solid var(--secondary);
+  overflow: hidden;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+
 }
 
 .product-card picture {
-  position: relative;
   width: 100%;
-  height: 200px;
-  overflow: hidden;
+  height: 100%;
 }
 
 .product-card picture img {
@@ -101,6 +106,7 @@
   /* Texto gris oscuro */
   margin: 0;
   background-color: #fff;
+
 }
 
 .product_category {
@@ -110,11 +116,18 @@
 
 
 .product-info {
-  flex: 1;
-  height: 100%;
-  background-color: #fff;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+  color: black;
+  background-color: #ffffff7e;
+  backdrop-filter: blur(10px);
   padding: 5px;
-  /* Permite que el contenido de la información ocupe todo el espacio restante */
 }
 
 .product-info h3 {
@@ -137,7 +150,6 @@
   font-size: 1em;
   font-weight: 600;
   color: var(--primary);
-  background-color: #fff;
   margin-bottom: 10px;
 }
 
@@ -199,7 +211,7 @@
 
 .btn_container {
   position: absolute;
-  bottom: 0;
+  top: 0;
   opacity: 0;
   display: flex;
   align-items: center;
@@ -207,6 +219,7 @@
   width: 100%;
   background-color: var(--primary);
   transition: all .3s;
+  z-index: 10;
 }
 
 .btn_fav,
@@ -260,4 +273,20 @@
 .btn_icons {
   width: 20px;
   height: 20px;
+}
+
+.agotado::after {
+  content: 'AGOTADO';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #393E46;
+  font-size: 3em;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(48deg);
+
 }

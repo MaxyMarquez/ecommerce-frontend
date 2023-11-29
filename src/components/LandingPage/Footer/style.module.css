@@ -9,6 +9,10 @@
 }
 
 .social_media {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
     max-width: 25%;
     background-color: #fff;
 
@@ -16,8 +20,8 @@
 
 .social_media .ul {
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    align-items: start;
+    justify-content: center;
     gap: 10px;
     list-style: none;
     margin: 0;
@@ -44,10 +48,11 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
+    margin: 0;
 }
 
 .social_media .icon {
-    font-size: 1.1em;
+
     color: white;
 }
 
@@ -104,4 +109,25 @@
 
 .app_links img {
     width: 150px;
+}
+
+.logo_container {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    width: 100%;
+}
+
+.picture {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.logo {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
 }

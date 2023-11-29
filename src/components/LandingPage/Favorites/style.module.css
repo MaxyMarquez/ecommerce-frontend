@@ -49,3 +49,20 @@
     color: var(--primary);
     transition: all .3s ease;
 }
+
+.btn_addAlltoCart {
+    width: 100%;
+    padding: 10px;
+    color: var(--primary);
+    border: 1px solid var(--secondary);
+    background-color: transparent;
+    transition: .3s ease;
+
+}
+
+.btn_addAlltoCart:hover {
+    color: white;
+    border: 1px solid rgb(47, 116, 246);
+    background-color: rgb(47, 116, 246);
+
+}
